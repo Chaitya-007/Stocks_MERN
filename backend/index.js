@@ -14,6 +14,14 @@ app.get("/", (request, response) => {
   response.status(200).send("Server is ready");
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+mongoose
+  .connect(mongoDBURL)
+  .then(() => {
+    console.log("MongoDB connected");
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.log("Error connecting to MongoDB", error.message);
+  });
