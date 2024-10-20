@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import { Stock } from "./models/stockModel.js";
 dotenv.config({});
 
 const PORT = process.env.PORT || 5000;
@@ -13,6 +14,8 @@ app.get("/", (request, response) => {
 
   response.status(200).send("Server is ready");
 });
+
+app.post("/stocks", async (request, response) => {});
 
 mongoose
   .connect(mongoDBURL)
