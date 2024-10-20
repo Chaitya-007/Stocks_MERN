@@ -59,6 +59,50 @@ app.get("/stocks/:id", async (request, response) => {
   }
 });
 
+app.put("/stocks/:id", async (request, response) => {
+  try {
+    if (!request.body.name || !request.body.price || !request.body.marketCap) {
+      return response.status(400).send("Missing required fields");
+    }
+
+    const { id } = request.params;
+
+    const result = await Stock.findByIdAndUpdate(id, request.body);
+
+    if (!result) {
+      return response.status(404).send({ message: "Stock not found" });
+    }
+
+    return response
+      .status(200)
+      .send({ messagee: "Stock updated successfully" });
+  } catch (error) {
+    console.log({ message: "Error updating stock" });
+  }
+});
+
+app.delete("/stocks/:id", async (request, response) => {
+  try {
+    if (!request.body.name || !request.body.price || !request.body.marketCap) {
+      return response.status(400).send("Missing required fields");
+    }
+
+    const { id } = request.params;
+
+    const result = await Stock.findByIdAndDelete(id);
+
+    if (!result) {
+      return response.status(404).send({ message: "Stock not found" });
+    }
+
+    return response
+      .status(200)
+      .send({ messagee: "Stock deleted successfully" });
+  } catch (error) {
+    console.log({ message: "Error updating stock" });
+  }
+});
+
 mongoose
   .connect(mongoDBURL)
   .then(() => {
