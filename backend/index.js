@@ -40,7 +40,10 @@ app.post("/stocks", async (request, response) => {
 app.get("/stocks", async (request, response) => {
   try {
     const stocks = await Stock.find({});
-    return response.status(200).json(stocks);
+    return response.status(200).json({
+      count: stocks.length,
+      data: stocks,
+    });
   } catch (error) {
     console.log("Error getting stocks", error.message);
   }
