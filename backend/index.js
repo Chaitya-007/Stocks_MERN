@@ -15,7 +15,12 @@ app.get("/", (request, response) => {
   response.status(200).send("Server is ready");
 });
 
-app.post("/stocks", async (request, response) => {});
+app.post("/stocks", async (request, response) => {
+  try {
+  } catch (error) {
+    console.log("Error creating stock", error.message);
+  }
+});
 
 mongoose
   .connect(mongoDBURL)
