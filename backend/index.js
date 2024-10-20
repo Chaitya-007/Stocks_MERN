@@ -13,12 +13,24 @@ const app = express();
 // Add middleware
 app.use(express.json());
 
-// This will add /books to all routes as prefix
-app.use("/stocks", stocksRoute);
+// Default cors
+// Allows all origins and headers
+app.use(cors());
+// Option 2
+// Allows only specific origins
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type"],
+  })
+);
 
 app.get("/", (request, response) => {
   response.send("welcome");
 });
+// This will add /books to all routes as prefix
+app.use("/stocks", stocksRoute);
 
 mongoose
   .connect(mongoDBURL)

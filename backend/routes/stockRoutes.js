@@ -3,7 +3,7 @@ import { Stock } from "../models/stockModel.js";
 
 const router = express.Router();
 
-router.post("/stocks", async (request, response) => {
+router.post("/", async (request, response) => {
   try {
     if (!request.body.name || !request.body.price || !request.body.marketCap) {
       return response.status(400).send("Missing required fields");
@@ -22,7 +22,7 @@ router.post("/stocks", async (request, response) => {
   }
 });
 
-router.get("/stocks", async (request, response) => {
+router.get("/", async (request, response) => {
   try {
     const stocks = await Stock.find({});
     return response.status(200).json({
@@ -34,7 +34,7 @@ router.get("/stocks", async (request, response) => {
   }
 });
 
-router.get("/stocks/:id", async (request, response) => {
+router.get("/:id", async (request, response) => {
   try {
     const { id } = request.params;
     const stock = await Stock.findById(id);
@@ -44,7 +44,7 @@ router.get("/stocks/:id", async (request, response) => {
   }
 });
 
-router.put("/stocks/:id", async (request, response) => {
+router.put("/:id", async (request, response) => {
   try {
     if (!request.body.name || !request.body.price || !request.body.marketCap) {
       return response.status(400).send("Missing required fields");
@@ -66,7 +66,7 @@ router.put("/stocks/:id", async (request, response) => {
   }
 });
 
-router.delete("/stocks/:id", async (request, response) => {
+router.delete("/:id", async (request, response) => {
   try {
     const { id } = request.params;
 
