@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { Stock } from "./models/stockModel.js";
+import stocksRoute from "./routes/stockRoutes.js";
 dotenv.config({});
 
 const PORT = process.env.PORT || 5000;
@@ -11,6 +12,13 @@ const app = express();
 
 // Add middleware
 app.use(express.json());
+
+// This will add /books to all routes as prefix
+app.use("/stocks", stocksRoute);
+
+app.get("/", (request, response) => {
+  response.send("welcome");
+});
 
 mongoose
   .connect(mongoDBURL)

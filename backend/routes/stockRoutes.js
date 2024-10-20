@@ -1,10 +1,9 @@
-app.get("/", (request, response) => {
-  console.log(request);
+import express from "express";
+import { Stock } from "../models/stockModel.js";
 
-  response.status(200).send("Server is ready");
-});
+const router = express.Router();
 
-app.post("/stocks", async (request, response) => {
+router.post("/stocks", async (request, response) => {
   try {
     if (!request.body.name || !request.body.price || !request.body.marketCap) {
       return response.status(400).send("Missing required fields");
@@ -23,7 +22,7 @@ app.post("/stocks", async (request, response) => {
   }
 });
 
-app.get("/stocks", async (request, response) => {
+router.get("/stocks", async (request, response) => {
   try {
     const stocks = await Stock.find({});
     return response.status(200).json({
@@ -35,7 +34,7 @@ app.get("/stocks", async (request, response) => {
   }
 });
 
-app.get("/stocks/:id", async (request, response) => {
+router.get("/stocks/:id", async (request, response) => {
   try {
     const { id } = request.params;
     const stock = await Stock.findById(id);
@@ -45,7 +44,7 @@ app.get("/stocks/:id", async (request, response) => {
   }
 });
 
-app.put("/stocks/:id", async (request, response) => {
+router.put("/stocks/:id", async (request, response) => {
   try {
     if (!request.body.name || !request.body.price || !request.body.marketCap) {
       return response.status(400).send("Missing required fields");
@@ -67,7 +66,7 @@ app.put("/stocks/:id", async (request, response) => {
   }
 });
 
-app.delete("/stocks/:id", async (request, response) => {
+router.delete("/stocks/:id", async (request, response) => {
   try {
     const { id } = request.params;
 
@@ -84,3 +83,5 @@ app.delete("/stocks/:id", async (request, response) => {
     console.log({ message: "Error updating stock" });
   }
 });
+
+export default router;
