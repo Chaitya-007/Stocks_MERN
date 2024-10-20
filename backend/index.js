@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { Stock } from "./models/stockModel.js";
 import stocksRoute from "./routes/stockRoutes.js";
+import cors from "cors";
 dotenv.config({});
 
 const PORT = process.env.PORT || 5000;
@@ -18,13 +19,13 @@ app.use(express.json());
 app.use(cors());
 // Option 2
 // Allows only specific origins
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type"],
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     allowedHeaders: ["Content-Type"],
+//   })
+// );
 
 app.get("/", (request, response) => {
   response.send("welcome");
