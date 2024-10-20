@@ -83,10 +83,6 @@ app.put("/stocks/:id", async (request, response) => {
 
 app.delete("/stocks/:id", async (request, response) => {
   try {
-    if (!request.body.name || !request.body.price || !request.body.marketCap) {
-      return response.status(400).send("Missing required fields");
-    }
-
     const { id } = request.params;
 
     const result = await Stock.findByIdAndDelete(id);
