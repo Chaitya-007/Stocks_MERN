@@ -17,6 +17,18 @@ app.get("/", (request, response) => {
 
 app.post("/stocks", async (request, response) => {
   try {
+    if (!request.body.name || !request.body.price || !request.body.marketCap) {
+      return response.status(400).send("Missing required fields");
+    }
+
+    const newStock = {
+      name: request.body.name,
+      price: request.body.price,
+      marketCap: request.body.marketCap,
+    };
+
+    const stock = await Stock.create(newStock);
+    return response.status(201).send(stock);
   } catch (error) {
     console.log("Error creating stock", error.message);
   }
