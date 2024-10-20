@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.get("/", (request, response) => {
-  response.send("Server is ready");
+  response.status(200).send("Server is ready");
 });
 
 app.listen(PORT, () => {
