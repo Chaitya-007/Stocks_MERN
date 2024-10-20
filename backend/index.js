@@ -37,6 +37,15 @@ app.post("/stocks", async (request, response) => {
   }
 });
 
+app.get("/stocks", async (request, response) => {
+  try {
+    const stocks = await Stock.find({});
+    return response.status(200).json(stocks);
+  } catch (error) {
+    console.log("Error getting stocks", error.message);
+  }
+});
+
 mongoose
   .connect(mongoDBURL)
   .then(() => {
