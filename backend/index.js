@@ -49,6 +49,16 @@ app.get("/stocks", async (request, response) => {
   }
 });
 
+app.get("/stocks/:id", async (request, response) => {
+  try {
+    const { id } = request.params;
+    const stock = await Stock.findById({ id });
+    return response.status(200).json(stock);
+  } catch (error) {
+    console.log("Error getting stocks", error.message);
+  }
+});
+
 mongoose
   .connect(mongoDBURL)
   .then(() => {
