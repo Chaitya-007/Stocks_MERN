@@ -9,6 +9,9 @@ const mongoDBURL = process.env.MONGODBURL;
 
 const app = express();
 
+// Add middleware
+app.use(express.json());
+
 app.get("/", (request, response) => {
   console.log(request);
 
