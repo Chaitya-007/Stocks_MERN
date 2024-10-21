@@ -4,6 +4,7 @@ import CreateBook from "./pages/CreateStock";
 import DeleteBook from "./pages/DeleteStock";
 import EditBook from "./pages/EditStock";
 import Home from "./pages/Home";
+import ShowStock from "./pages/ShowStock";
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <Route path="/" element={<Home />} />
       <Route path="/stocks/create" element={<CreateBook />} />
       <Route path="/stocks/edit/:id" element={<EditBook />} />
+      <Route path="/stocks/details/:id" element={<ShowStock />} />
       <Route path="stocks/delete/:id" element={<DeleteBook />} />
     </Routes>
   );

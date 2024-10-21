@@ -14,6 +14,8 @@ const Home = () => {
       .get("http://localhost:5555/stocks")
       .then((response) => {
         setBooks(response.data.data);
+        console.log(response);
+
         setLoading(false);
       })
       .catch((error) => {
@@ -41,6 +43,11 @@ const Home = () => {
               <Link to={`/stocks/edit/${stock._id}`}>
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                   Edit
+                </button>
+              </Link>
+              <Link to={`/stocks/details/${stock._id}`}>
+                <button className="bg-yellow-400 hover:bg-yellow-700 text-black font-bold py-2 px-4 rounded">
+                  Show
                 </button>
               </Link>
               <Link to={`/stocks/delete/${stock._id}`}>
