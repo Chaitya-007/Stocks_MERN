@@ -1,7 +1,7 @@
 import React from "react";
 
 const Spinner = () => {
-  return <div>Spinner</div>;
+  return <div className="bg-red-600">Spinner</div>;
 };
 
 export default Spinner;
