@@ -17,7 +17,6 @@ const Home = () => {
       .get("http://localhost:5555/stocks")
       .then((response) => {
         setStocks(response.data.data);
-        console.log(response);
 
         setLoading(false);
       })

@@ -17,7 +17,7 @@ const StockTable = ({ stocks }) => {
             </Link>
             <Link to={`/stocks/details/${stock._id}`}>
               <button className="bg-yellow-400 hover:bg-yellow-700 text-black font-bold py-2 px-4 rounded">
-                Show
+                ShowDetails
               </button>
             </Link>
             <Link to={`/stocks/delete/${stock._id}`}>
